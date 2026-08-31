@@ -149,6 +149,13 @@
     background-position:right 4px center;
     padding-right:20px;
   }
+  /* The dropdown list itself is drawn by the OS/browser, not by our CSS —
+     it ignores the page's dark background, so option text needs its own
+     explicit dark-on-light colors or it renders invisible (white on white). */
+  select option{
+    color:#1C1B19;
+    background:#F2F0EA;
+  }
   textarea{resize:vertical; min-height:76px; line-height:1.5;}
   input:focus, select:focus, textarea:focus{
     border-bottom-color:var(--blueprint);
@@ -386,7 +393,7 @@
   // ── CONFIGURA AQUÍ el destino de las respuestas ──────────────────────────
   // Reemplaza esta URL con tu endpoint de Formspree, Make, Zapier o Google
   // Apps Script. Ver instrucciones al final del mensaje de Claude.
-  const FORM_ENDPOINT = https://script.google.com/macros/s/AKfycbwjqOGUAWo33Grx3rqtILVWCfZu7paNNhbShxrAzmpISjiB0OpRiY5fIUUYEItJ3A0/exec;
+  const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbwjqOGUAWo33Grx3rqtILVWCfZu7paNNhbShxrAzmpISjiB0OpRiY5fIUUYEItJ3A0/exec";
   // ──────────────────────────────────────────────────────────────────────────
 
   const form = document.getElementById('torusForm');
@@ -478,6 +485,7 @@
       ubicacion: document.getElementById('ubicacion').value.trim(),
       referencia: document.getElementById('referencia').value,
       mensaje: document.getElementById('mensaje').value.trim(),
+      consentimiento: document.getElementById('consentimiento').checked,
       fecha_envio: new Date().toISOString()
     };
 
